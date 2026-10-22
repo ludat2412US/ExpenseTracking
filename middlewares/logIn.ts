@@ -53,6 +53,8 @@ export async function logIn(
             logger.info("Log in successfully");
 
             const accessToken = jwt.sign({userName: isExistUser.userName, role: "user", id: isExistUser.userID}, env.accessSecretToken);
+            const refreshToken = jwt.sign({userName: isExistUser.userName, role: "user", id: isExistUser.userID}, env.refreshSecretToken);
+
             if (accessToken) {
                 return res.status(201).json({
                     success: true,
